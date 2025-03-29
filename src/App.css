@@ -9,6 +9,10 @@
   margin-bottom: 30px;
 }
 
+.input-type-toggle {
+  margin-bottom: 15px;
+}
+
 .input-type-toggle button {
   margin-right: 10px;
   padding: 10px 20px;
@@ -31,7 +35,11 @@ textarea, input[type="text"] {
   border-radius: 4px;
 }
 
-button {
+input[type="file"] {
+  margin: 10px 0;
+}
+
+button.generate-btn {
   padding: 10px 20px;
   cursor: pointer;
   border: none;
@@ -40,7 +48,7 @@ button {
   border-radius: 4px;
 }
 
-button:disabled {
+button.generate-btn:disabled {
   background: #ccc;
   cursor: not-allowed;
 }
@@ -49,10 +57,16 @@ button:disabled {
   margin-top: 30px;
 }
 
+.flashcards-section h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
 .flashcards-container {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  justify-content: center;
 }
 
 .flashcard {
@@ -86,6 +100,7 @@ button:disabled {
   justify-content: center;
   padding: 10px;
   box-sizing: border-box;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .flashcard-front {
@@ -99,4 +114,5 @@ button:disabled {
 
 .flashcard-text {
   font-size: 16px;
+  text-align: center;
 }
