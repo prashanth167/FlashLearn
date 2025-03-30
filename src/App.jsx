@@ -19,9 +19,10 @@ function App() {
     setLoading(true);
     setFlashcards([]); // Clear previous results
     try {
+      let response;
       if (inputType === 'text') {
         // Call API for text input
-        const response = await fetch('http://localhost:5000/api/generate-from-text', {
+        response = await fetch('http://localhost:5000/api/generate-from-text', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -29,8 +30,6 @@ function App() {
             type: 'text',
           }),
         });
-        const data = await response.json();
-        setFlashcards(data);
       } else if (inputType === 'pdf') {
         // Ensure a file is selected
         if (!pdfFile) {
@@ -41,12 +40,18 @@ function App() {
         // Call API for PDF file upload
         const formData = new FormData();
         formData.append('file', pdfFile);
-        const response = await fetch('http://localhost:5000/api/generate-from-pdf', {
+        response = await fetch('http://localhost:5000/api/generate-from-pdf', {
           method: 'POST',
           body: formData,
         });
-        const data = await response.json();
-        setFlashcards(data);
+      }
+
+      // Parse the JSON response and extract flashcards
+      const data = await response.json();
+      if (data.flashcards && Array.isArray(data.flashcards)) {
+        setFlashcards(data.flashcards);
+      } else {
+        throw new Error('Flashcards data not in expected format');
       }
     } catch (error) {
       console.error('Error generating flashcards:', error);
