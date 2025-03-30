@@ -1,4 +1,3 @@
-// App.js
 import React, { useState } from 'react';
 import './App.css';
 import Flashcard from './Flashcard'; // Import the Flashcard component
@@ -10,7 +9,7 @@ function App() {
   const [pdfFile, setPdfFile] = useState(null);
   const [flashcards, setFlashcards] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0); // State to keep track of the current flashcard
+  const [currentIndex, setCurrentIndex] = useState(0); // Track current flashcard
 
   const handleFileChange = (e) => {
     if (e.target.files.length > 0) {
@@ -69,12 +68,12 @@ function App() {
   };
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % flashcards.length); // Move to next flashcard, loop back to the start
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % flashcards.length);
   };
 
   const handlePrevious = () => {
     setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + flashcards.length) % flashcards.length // Move to previous flashcard, loop back to the end
+      (prevIndex) => (prevIndex - 1 + flashcards.length) % flashcards.length
     );
   };
 
@@ -120,7 +119,11 @@ function App() {
         <button
           className="generate-btn"
           onClick={generateFlashcards}
-          disabled={loading || ((inputType === 'text' && !inputValue) || (inputType === 'pdf' && !pdfFile))}
+          disabled={
+            loading ||
+            ((inputType === 'text' && !inputValue) ||
+              (inputType === 'pdf' && !pdfFile))
+          }
         >
           {loading ? 'Generating...' : 'Generate Flashcards'}
         </button>
