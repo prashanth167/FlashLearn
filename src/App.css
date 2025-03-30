@@ -1,14 +1,15 @@
 .app {
-  /* A semi-transparent card to sit on top of the gradient background */
-  background-color: rgba(0, 0, 0, 0.6);
+  /* A semi-transparent card on top of the gradient background */
+  background-color: rgba(0, 0, 0, 0.4);
   border-radius: 12px;
   max-width: 900px;
   margin: 40px auto;
   padding: 30px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+
+  /* In light mode, we'll override the background a bit */
 }
 
-/* Light-mode version of the .app container */
 @media (prefers-color-scheme: light) {
   .app {
     background-color: #ffffff;
@@ -51,12 +52,12 @@
 }
 
 .input-type-toggle button:hover {
-  background: #ffbd42;
+  background: #ffb830;
 }
 
 /* Active toggle button */
 .input-type-toggle button.active {
-  background: #ffbd42;
+  background: #ffb830;
   border: 2px solid #ffd369;
   color: #fff;
 }
@@ -124,10 +125,10 @@ button.generate-btn:disabled {
   gap: 20px;
 }
 
-/* The flashcard wrapper */
+/* The flashcard wrapper - made larger for better visibility */
 .flashcard {
-  width: 300px;
-  height: 200px;
+  width: 400px;
+  height: 250px;
   perspective: 1000px; /* For the 3D flip effect */
 }
 

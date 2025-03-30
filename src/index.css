@@ -1,4 +1,4 @@
-/* Import a nicer, modern font from Google Fonts */
+/* Import a modern font */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
 :root {
@@ -6,9 +6,12 @@
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
-  /* Default to a dark gradient background and light text */
+
+  /* Main text color */
   color: #ffffff;
-  background: linear-gradient(135deg, #2c3e50, #4ca1af);
+  /* Gradient background */
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -19,17 +22,18 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: linear-gradient(135deg, #2c3e50, #4ca1af);
+  /* The gradient is applied to :root, so just inherit here */
+  background: inherit;
 }
 
 a {
   font-weight: 500;
-  color: #ffd369;
+  color: #ffb830;
   text-decoration: none;
 }
 
 a:hover {
-  color: #ffe39f;
+  color: #ffd369;
 }
 
 h1 {
@@ -44,7 +48,7 @@ button {
   border-radius: 6px;
   border: none;
   padding: 0.6em 1.2em;
-  font-size: 1em;
+  font-size: 1rem;
   font-weight: 500;
   font-family: inherit;
   cursor: pointer;
@@ -58,7 +62,7 @@ button:hover {
 
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 3px solid #ffb830;
 }
 
 /* Light-mode overrides */
@@ -68,7 +72,7 @@ button:focus-visible {
     background: linear-gradient(135deg, #ffffff, #f0f0f0);
   }
   body {
-    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    background: inherit;
   }
   a {
     color: #007bff;

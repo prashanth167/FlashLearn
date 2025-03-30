@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import Flashcard from './Flashcard'; // Import the Flashcard component
+import Flashcard from './Flashcard';
 
 function App() {
   // 'pdf' or 'text'
@@ -9,7 +9,7 @@ function App() {
   const [pdfFile, setPdfFile] = useState(null);
   const [flashcards, setFlashcards] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0); // Track current flashcard
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleFileChange = (e) => {
     if (e.target.files.length > 0) {
@@ -19,11 +19,10 @@ function App() {
 
   const generateFlashcards = async () => {
     setLoading(true);
-    setFlashcards([]); // Clear previous results
+    setFlashcards([]);
     try {
       let response;
       if (inputType === 'text') {
-        // Call API for text input
         response = await fetch('http://127.0.0.1:8000/textFlashCards/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -33,13 +32,11 @@ function App() {
           }),
         });
       } else if (inputType === 'pdf') {
-        // Ensure a file is selected
         if (!pdfFile) {
           alert('Please select a PDF file.');
           setLoading(false);
           return;
         }
-        // Call API for PDF file upload
         const formData = new FormData();
         formData.append('file', pdfFile);
         response = await fetch('http://127.0.0.1:8000/pdfFlashCards/', {
@@ -48,7 +45,6 @@ function App() {
         });
       }
 
-      // Parse the JSON response and extract flashcards
       const responseText = await response.text();
       let data = JSON.parse(responseText);
       if (typeof data === 'string' || typeof data === 'object') {
@@ -102,6 +98,7 @@ function App() {
             Upload PDF
           </button>
         </div>
+
         {inputType === 'text' ? (
           <textarea
             placeholder="Paste your notes or document text here..."
@@ -116,6 +113,7 @@ function App() {
             onChange={handleFileChange}
           />
         )}
+
         <button
           className="generate-btn"
           onClick={generateFlashcards}
@@ -139,14 +137,17 @@ function App() {
             />
           </div>
         )}
-        <div className="navigation-buttons">
-          <button onClick={handlePrevious} disabled={flashcards.length === 0}>
-            &lt; Previous
-          </button>
-          <button onClick={handleNext} disabled={flashcards.length === 0}>
-            Next &gt;
-          </button>
-        </div>
+
+        {flashcards.length > 0 && (
+          <div className="navigation-buttons">
+            <button onClick={handlePrevious}>
+              &lt; Previous
+            </button>
+            <button onClick={handleNext}>
+              Next &gt;
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
